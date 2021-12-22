@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/tabela-monstros/precache-manifest.e933b36a11d2c629d9de7e93e87fbacd.js"
+  "/tabela-monstros.git/precache-manifest.dc7c72c27f21e657ccfbcce878f93d64.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/tabela-monstros/index.html", {
+workbox.routing.registerNavigationRoute("/tabela-monstros.git/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
