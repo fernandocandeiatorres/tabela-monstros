@@ -14,9 +14,6 @@ class App extends Component {
       value: "",
       searchField: "",
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // When the component is loaded, call this method
@@ -27,12 +24,16 @@ class App extends Component {
   }
 
   // Handle form to create monsters
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+  handleChange = (e) => {
+    if (e.target.type === "search") {
+      this.setState({ searchField: e.target.value });
+    } else if (e.target.type === "text") {
+      this.setState({ value: e.target.value });
+    }
+  };
 
   // Handle form when submitted to create monsters
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     const newMonsters = [...this.state.monsters];
 
     newMonsters.push({
@@ -41,7 +42,7 @@ class App extends Component {
 
     this.setState({ monsters: newMonsters });
     event.preventDefault();
-  }
+  };
 
   render() {
     const { monsters, searchField } = this.state;
@@ -50,25 +51,29 @@ class App extends Component {
     );
     return (
       <div className="App">
-        {/* INPUT SEARCHFIELD TO FILTER  */}
-        <SearchBox
-          placeholder="search monsters"
-          handleChange={(e) => this.setState({ searchField: e.target.value })}
-        ></SearchBox>
-        <CardList monsters={filteredMonsters}></CardList>
+        <h1> Monsters Rolodex </h1>
+        <div className="search-boxes">
+          {/* INPUT SEARCHFIELD TO FILTER  */}
+          <SearchBox
+            placeholder="search monsters"
+            handleChange={this.handleChange}
+          ></SearchBox>
 
-        {/* FORM TO CREATE MONSTER */}
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Monster:
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+          {/* FORM TO CREATE MONSTER */}
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Monster:
+              <input
+                placeholder="CREATE MONSTER"
+                type="text"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <CardList monsters={filteredMonsters}></CardList>
       </div>
     );
   }

@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.search-boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.search-boxes form {
+  width: 150px;
+  color: white;
+}
+
+h1 {
+  font-family: "Bigelow Rules";
+  font-size: 72px;
+  color: #0ccac4;
+}
