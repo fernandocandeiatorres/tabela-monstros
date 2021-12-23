@@ -6,14 +6,16 @@ import { SearchBox } from "./components/search-box/search-box.component";
 import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       monsters: [],
       value: "",
       searchField: "",
     };
+
+    this.props = props;
   }
 
   // When the component is loaded, call this method
@@ -45,6 +47,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.props.increment);
     const { monsters, searchField } = this.state;
     const filteredMonsters = monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchField.toLowerCase())
